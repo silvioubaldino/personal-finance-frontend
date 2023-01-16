@@ -1,26 +1,20 @@
-import { useState } from 'react';
-import './App.css';
-import DataFilterBTN from './components/DataFilterBTN';
-import Filter from './components/Filter';
-import Table from './components/Table';
-// import CollapsibleTable from "./components/collapseTable";
+import { Route, Switch } from 'react-router-dom';
+
+import About from './pages/About';
+import Home from './pages/Home';
+import Report from './pages/Reports';
 
 function App() {
-    const [toggleFilter, setToggleFilter] = useState(false);
+  return (
+    <Switch>
+      <Route exact path="/" component={ Home } />
 
-    return (
-        <div className="App">
-            <h1>Personal Finance</h1>
-            <label>
-                Selecione o mês
-                <DataFilterBTN />
-            </label>
-            <button onClick={ () => setToggleFilter(!toggleFilter) }>Filter</button>
-            {toggleFilter && <Filter />}
-            <Table />
-            {/* <CollapsibleTable /> */}
-        </div>
-    );
+      <Route exact path="/relatorios" component={ Report } />
+
+      <Route exact path="/sobre" component={ About } />
+
+    </Switch>
+  );
 }
 
 export default App;
