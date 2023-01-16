@@ -1,6 +1,10 @@
+import NavBar from "../components/Navbar";
+
 const Report = () => {
   return (
-    <div></div>
+    <div>
+      <NavBar />
+    </div>
   );
 };
 
