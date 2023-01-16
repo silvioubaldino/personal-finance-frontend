@@ -1,6 +1,8 @@
 const GraphicRender = () => {
   return (
-    <div></div>
+    <div>
+      <h1>Gráficos vem aqui</h1>
+    </div>
   );
 };
 
