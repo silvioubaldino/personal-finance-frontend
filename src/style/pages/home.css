@@ -14,7 +14,14 @@
   align-items: baseline;
 }
 
+.container-mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  justify-content: space-evenly;
+}
+
 .container-graphic-movements {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }

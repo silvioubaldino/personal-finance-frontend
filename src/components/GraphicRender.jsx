@@ -1,7 +1,10 @@
+import '../style/components/graphicRender.css';
+import graphicIMG from '../mocks/mockGraphic.png';
+
 const GraphicRender = () => {
   return (
-    <div>
-      <h1>Gráficos vem aqui</h1>
+    <div className='container-graphic'>
+      <img src={ graphicIMG } alt='grafico' />
     </div>
   );
 };

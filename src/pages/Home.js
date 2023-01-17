@@ -13,7 +13,7 @@ const Home = () => {
         <NavBar />
         <Profile />
       </header>
-      <main>
+      <main className="container-mainContent">
         <section>
           <ResumedReport />
         </section>
