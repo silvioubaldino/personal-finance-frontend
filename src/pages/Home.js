@@ -8,7 +8,7 @@ import "../style/pages/home.css";
 
 const Home = () => {
   return (
-    <div>
+    <div className="container-home">
       <header className="container-header">
         <NavBar />
         <Profile />

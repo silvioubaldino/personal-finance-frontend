@@ -6,7 +6,7 @@ const ResumedReport = () => {
   return (
     <div className="container-report">
       <div>
-        <h5>Gastos</h5>
+        <h5 id=''>Gastos</h5>
         {`R$ ${reports.gastos}`}
       </div>
       <div>

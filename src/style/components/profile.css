@@ -1,0 +1,18 @@
+.container-profile {
+  color: rgba(65, 75, 178, 1);
+  font-size: 35px;
+  font-weight: 800;
+  margin-right: 1%;
+  display: flex;
+  align-items: baseline;
+}
+
+.profile-icon {
+  color: black;
+  margin-right: 10px;
+}
+
+.arrowDown-icon {
+  color: black;
+  margin-left: 10px;
+}
