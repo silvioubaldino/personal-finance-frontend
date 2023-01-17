@@ -1,3 +1,5 @@
+import '../style/components/movement.css'
+
 const Movements = () => {
   return (
     <div>

@@ -8,18 +8,20 @@ import "../style/pages/home.css";
 
 const Home = () => {
   return (
-    <div>
+    <div className="container-home">
       <header className="container-header">
         <NavBar />
         <Profile />
       </header>
-      <section>
-        <ResumedReport />
-      </section>
-      <section className="container-graphic-movements">
-        <GraphicRender />
-        <Movements />
-      </section>
+      <main>
+        <section>
+          <ResumedReport />
+        </section>
+        <section className="container-graphic-movements">
+          <GraphicRender />
+          <Movements />
+        </section>
+      </main>
     </div>
   );
 };

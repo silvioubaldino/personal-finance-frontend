@@ -1,8 +1,10 @@
 import NavBar from "../components/Navbar";
 
+import '../style/pages/report.css';
+
 const Report = () => {
   return (
-    <div>
+    <div className="container-reports">
       <NavBar />
     </div>
   );
