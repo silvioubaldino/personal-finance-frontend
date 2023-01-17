@@ -1,0 +1,4 @@
+.container-report {
+  display: flex;
+  justify-content: space-evenly;
+}

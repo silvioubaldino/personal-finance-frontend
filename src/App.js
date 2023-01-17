@@ -1,15 +1,20 @@
-import './App.css';
-import CollapsibleTable from "./components/collapseTable";
+import { Route, Switch } from 'react-router-dom';
+
+import About from './pages/About';
+import Home from './pages/Home';
+import Report from './pages/Reports';
 
 function App() {
+  return (
+    <Switch>
+      <Route exact path="/" component={ Home } />
 
+      <Route exact path="/relatorios" component={ Report } />
 
-    return (
-        <div className="App">
-            <h1>Personal Finance</h1>
-            <CollapsibleTable/>
-        </div>
-    );
+      <Route exact path="/sobre" component={ About } />
+
+    </Switch>
+  );
 }
 
 export default App;
