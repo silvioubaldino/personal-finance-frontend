@@ -1,8 +1,10 @@
 import NavBar from "../components/Navbar";
 
+import '../style/pages/about.css';
+
 const About = () => {
   return (
-    <div>
+    <div className="container-about">
       <NavBar />
     </div>
   );

@@ -13,13 +13,15 @@ const Home = () => {
         <NavBar />
         <Profile />
       </header>
-      <section>
-        <ResumedReport />
-      </section>
-      <section className="container-graphic-movements">
-        <GraphicRender />
-        <Movements />
-      </section>
+      <main>
+        <section>
+          <ResumedReport />
+        </section>
+        <section className="container-graphic-movements">
+          <GraphicRender />
+          <Movements />
+        </section>
+      </main>
     </div>
   );
 };
