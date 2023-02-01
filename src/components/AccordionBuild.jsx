@@ -40,13 +40,21 @@ const AccordionBuild = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <TableMovementDetails
-                  category={e.describe.type}
-                  description={e.typeBill}
-                  date={e.describe.date}
-                  payed={e.payed}
-                />
+                <table className='details-header'>
+                  <tr className='deitals-collum'>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Forma de Pagamento</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                  </tr>
+                </table>
               </Typography>
+              { e.details.map((f, index) => (
+                <Typography key={index}>
+                  <TableMovementDetails detail={f} />
+                </Typography>
+              ))}
             </AccordionDetails>
           </CustomizedAccordion>
         ))}

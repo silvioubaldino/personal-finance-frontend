@@ -1,19 +1,14 @@
-const TableMovementDetails = (props) => {
+import '../style/components/movement.css'
+
+const TableMovementDetails = ({detail}) => {
   return(
-    <table>
-      <tr>
-        <th>Categoria</th>
-        <th>Descrição</th>
-        <th>Forma de Pagamento</th>
-        <th>Data</th>
-        <th>Valor</th>
-      </tr>
-      <tr>
-        <td>{props.category}</td>
-        <td>{props.description}</td>
-        <td>Vale Alimentação</td>
-        <td>{props.date}</td>
-        <td>{props.payed}</td>
+    <table className='details-header'>
+      <tr className='deitals-collum'>
+        <td>{detail.category}</td>
+        <td>{detail.description}</td>
+        <td>{detail.typeOfBill}</td>
+        <td>{detail.date}</td>
+        <td>{detail.value}</td>
       </tr>
     </table>
   )
