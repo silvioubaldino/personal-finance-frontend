@@ -1,8 +1,9 @@
 import GraphicRender from "../components/GraphicRender";
-import Movements from "../components/Movements";
+// import Movements from "../components/Movements";
 import NavBar from "../components/Navbar";
 import Profile from "../components/Profile";
 import ResumedReport from "../components/ResumedReport";
+import AccordionBuild from "../components/AccordionBuild";
 
 import "../style/pages/home.css";
 
@@ -19,7 +20,7 @@ const Home = () => {
         </section>
         <section className="container-graphic-movements">
           <GraphicRender />
-          <Movements />
+          <AccordionBuild />
         </section>
       </main>
     </div>

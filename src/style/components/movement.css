@@ -1,6 +1,27 @@
 .container-movements {
-  width: 35%;
   color: rgba(238, 251, 252, 1);
+  overflow-y: scroll;
+  height: 66vh;
+  margin-bottom: 10px;
+}
+
+.container-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  color: rgba(238, 251, 252, 1);
+}
+
+.MuiAccordion-root {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiAccordionSummary-content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .container-movements h1 {
@@ -8,13 +29,17 @@
 }
 
 .container-movement-item {
-  background-color: rgba(137, 230, 234, 1);
-  height: max-content;
-  border: 2px solid black;
-  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row-wrapper {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  width: 720px;
 }
 
 .movement-item-right-title {
