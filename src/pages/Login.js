@@ -1,22 +1,28 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {app, auth} from "../config/firebase";
 import {signInWithEmailAndPassword} from "firebase/auth";
 
 import '../style/pages/login.css'
-import { writeStorage } from "../utils/handleLocalStorage";
+import { readStorage, writeStorage } from "../utils/handleLocalStorage";
+import { useHistory } from "react-router";
 
 const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
+    const [isLogged, setIsLogged] = useState(false);
+
+    const history = useHistory();
+
     function doLogin() {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                alert("Usário logado")
                 // Signed in
                 const user = userCredential.user;
                 // ...
                 user.getIdToken().then((token) => writeStorage(token))
+                // redirect to homepage
+                history.push('/');
             })
             .catch((error) => {
                 alert(error)
@@ -24,6 +30,13 @@ const Login = () => {
                 const errorMessage = error.message;
             });
     }
+
+    useEffect(() => {
+        const token = readStorage();
+        if (token || token.length > 0) {
+            history.push('/')
+        }
+    })
 
     return (
         <div className="container-login-main">

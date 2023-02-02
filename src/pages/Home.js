@@ -7,8 +7,9 @@ import AccordionBuild from "../components/AccordionBuild";
 
 import "../style/pages/home.css";
 import { useEffect } from "react";
-import { readStorage } from "../utils/handleLocalStorage";
 import { useHistory } from "react-router";
+
+import { readStorage } from "../utils/handleLocalStorage";
 
 const Home = () => {
   const history = useHistory();
