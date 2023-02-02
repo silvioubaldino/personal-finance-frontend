@@ -8,9 +8,9 @@ import Login from './pages/Login';
 function App() {
   return (
     <Switch>
-      <Route exact path="/login" component={ Login } />
-
       <Route exact path="/" component={ Home } />
+
+      <Route exact path="/login" component={ Login } />
 
       <Route exact path="/relatorios" component={ Report } />
 

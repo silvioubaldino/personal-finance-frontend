@@ -2,6 +2,8 @@ import {useState} from "react";
 import {app, auth} from "../config/firebase";
 import {signInWithEmailAndPassword} from "firebase/auth";
 
+import '../style/pages/login.css'
+
 const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -23,15 +25,16 @@ const Login = () => {
     }
 
     return (
-        <div className="container-login">
-            <form>
-                <h1>Login</h1>
+        <div className="container-login-main">
+            <h1>Personal Finance</h1>
+            <form className='container-form'>
+                <h2>Login</h2>
                 <label>Email
                     <input onChange={(e) => setEmail(e.target.value)} type="email" label="Email"/>
-                </label><br/>
+                </label>
                 <label>Senha
                     <input onChange={(e) => setPassword(e.target.value)}type="password" label="Senha"/>
-                </label><br/>
+                </label>
                 <button onClick={doLogin} type="button">Login</button>
             </form>
         </div>
