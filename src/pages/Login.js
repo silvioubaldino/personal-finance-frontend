@@ -3,6 +3,7 @@ import {app, auth} from "../config/firebase";
 import {signInWithEmailAndPassword} from "firebase/auth";
 
 import '../style/pages/login.css'
+import { writeStorage } from "../utils/handleLocalStorage";
 
 const Login = () => {
     const [email, setEmail] = useState()
@@ -15,7 +16,7 @@ const Login = () => {
                 // Signed in
                 const user = userCredential.user;
                 // ...
-                console.log(user.getIdToken())
+                user.getIdToken().then((token) => writeStorage(token))
             })
             .catch((error) => {
                 alert(error)
