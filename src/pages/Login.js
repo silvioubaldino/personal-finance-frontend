@@ -10,8 +10,6 @@ const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
-    const [isLogged, setIsLogged] = useState(false);
-
     const history = useHistory();
 
     function doLogin() {
@@ -33,7 +31,7 @@ const Login = () => {
 
     useEffect(() => {
         const token = readStorage();
-        if (token || token.length > 0) {
+        if (token.length > 0) {
             history.push('/')
         }
     })
