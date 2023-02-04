@@ -1,8 +1,8 @@
 import {setToken, baseUrl} from "./axiosConfig";
 import axios from "axios";
 
-const pathFindAll = "/categories"
-async function getAllCategories() {
+const pathFindAll = "/typePayments"
+async function getAllTypePayments() {
     const path = baseUrl + pathFindAll;
     const response = await axios.get(path)
         .catch(function (error) {
@@ -12,4 +12,4 @@ async function getAllCategories() {
     return response
 }
 
-export {getAllCategories}
+export {getAllTypePayments}
