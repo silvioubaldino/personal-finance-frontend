@@ -1,12 +1,9 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography, styled } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import Movements from "./ResumedMovements";
-import {getTransactionsByPeriod} from "../handlers/transaction";
 
-import { movements } from '../mocks/movementData.mock';
 import '../style/components/movement.css'
 import TableMovementDetails from "./TableMovementDetails";
-import {useEffect, useState} from "react";
 
 const CustomizedAccordion = styled(Accordion)`
   background: rgba(137, 230, 234, 1);
@@ -14,16 +11,7 @@ const CustomizedAccordion = styled(Accordion)`
   border-radius: 7px;
 `;
 
-const mockFrom = "2022-01-01"
-const mockTo = "2023-12-30"
-
-const AccordionBuild = () => {
-    const [from, setFrom] = useState(mockFrom)
-    const [to, setTo] = useState(mockTo)
-    useEffect(async() => {
-        const response = await getTransactionsByPeriod(from, to)
-        console.log(response)
-    },[from, to])
+const AccordionBuild = ({movements}) => {
 
   return(
     <div className="container-accordion">
@@ -39,34 +27,21 @@ const AccordionBuild = () => {
             >
               <Typography>
                 <Movements
-                  describeType={e.describe.type}
-                  describeTitle={e.describe.title}
-                  describePrice={e.describe.price}
-                  describeDate={e.describe.date}
-                  typeBill={e.typeBill}
-                  estimated={e.estimated}
-                  payed={e.payed}
-                  rest={e.rest}
+                  describeType={e.parent_transaction.categories.description}
+                  describeTitle={e.parent_transaction.description}
+                  describePrice={e.parent_transaction.amount}
+                  describeDate={e.parent_transaction.date_update}
+                  typeBill={e.parent_transaction.description}
+                  estimated={e.consolidation.estimated}
+                  payed={e.consolidation.realized}
+                  rest={e.consolidation.remaining}
                 />
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <table className='details-header'>
-                  <tr className='deitals-collum'>
-                    <th>Categoria</th>
-                    <th>Descrição</th>
-                    <th>Forma de Pagamento</th>
-                    <th>Data</th>
-                    <th>Valor</th>
-                  </tr>
-                </table>
+                <TableMovementDetails detail={e} />
               </Typography>
-              { e.details.map((f, index) => (
-                <Typography key={index}>
-                  <TableMovementDetails detail={f} />
-                </Typography>
-              ))}
             </AccordionDetails>
           </CustomizedAccordion>
         ))}
