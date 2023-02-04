@@ -1,7 +1,7 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography, styled } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import Movements from "./ResumedMovements";
-import {getTransactionsByPeriod} from "../handlers/transactions";
+import {getTransactionsByPeriod} from "../handlers/transaction";
 
 import { movements } from '../mocks/movementData.mock';
 import '../style/components/movement.css'
