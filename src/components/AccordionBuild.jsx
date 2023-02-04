@@ -1,10 +1,12 @@
 import { Accordion, AccordionSummary, AccordionDetails, Typography, styled } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import Movements from "./ResumedMovements";
+import {getTransactionsByPeriod} from "../handlers/transactions";
 
 import { movements } from '../mocks/movementData.mock';
 import '../style/components/movement.css'
 import TableMovementDetails from "./TableMovementDetails";
+import {useEffect, useState} from "react";
 
 const CustomizedAccordion = styled(Accordion)`
   background: rgba(137, 230, 234, 1);
@@ -12,7 +14,17 @@ const CustomizedAccordion = styled(Accordion)`
   border-radius: 7px;
 `;
 
+const mockFrom = "2022-01-01"
+const mockTo = "2023-12-30"
+
 const AccordionBuild = () => {
+    const [from, setFrom] = useState(mockFrom)
+    const [to, setTo] = useState(mockTo)
+    useEffect(async() => {
+        const response = await getTransactionsByPeriod(from, to)
+        console.log(response)
+    },[from, to])
+
   return(
     <div className="container-accordion">
       <h1>Movimentações</h1>
