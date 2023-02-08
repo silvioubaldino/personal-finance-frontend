@@ -2,7 +2,6 @@ import { Accordion, AccordionSummary, AccordionDetails, Typography, styled } fro
 import { ExpandMore } from "@mui/icons-material";
 import Movements from "./ResumedMovements";
 
-import { movements } from '../mocks/movementData.mock';
 import '../style/components/movement.css'
 import TableMovementDetails from "./TableMovementDetails";
 
@@ -12,7 +11,8 @@ const CustomizedAccordion = styled(Accordion)`
   border-radius: 7px;
 `;
 
-const AccordionBuild = () => {
+const AccordionBuild = ({movements}) => {
+
   return(
     <div className="container-accordion">
       <h1>Movimentações</h1>
@@ -27,34 +27,21 @@ const AccordionBuild = () => {
             >
               <Typography>
                 <Movements
-                  describeType={e.describe.type}
-                  describeTitle={e.describe.title}
-                  describePrice={e.describe.price}
-                  describeDate={e.describe.date}
-                  typeBill={e.typeBill}
-                  estimated={e.estimated}
-                  payed={e.payed}
-                  rest={e.rest}
+                  describeType={e.parent_transaction.categories.description}
+                  describeTitle={e.parent_transaction.description}
+                  describePrice={e.parent_transaction.amount}
+                  describeDate={e.parent_transaction.date_update}
+                  typeBill={e.parent_transaction.description}
+                  estimated={e.consolidation.estimated}
+                  payed={e.consolidation.realized}
+                  rest={e.consolidation.remaining}
                 />
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>
-                <table className='details-header'>
-                  <tr className='deitals-collum'>
-                    <th>Categoria</th>
-                    <th>Descrição</th>
-                    <th>Forma de Pagamento</th>
-                    <th>Data</th>
-                    <th>Valor</th>
-                  </tr>
-                </table>
+                <TableMovementDetails detail={e} />
               </Typography>
-              { e.details.map((f, index) => (
-                <Typography key={index}>
-                  <TableMovementDetails detail={f} />
-                </Typography>
-              ))}
             </AccordionDetails>
           </CustomizedAccordion>
         ))}

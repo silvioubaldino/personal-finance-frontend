@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  pg-personal-finance:
+    container_name: pg-personal-finance
+    image: postgres:14.5-alpine
+    environment:
+      POSTGRES_DB: personal_finance
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+      - ../postgres/.data:/data/postgres
+    networks:
+      - apiNetwork
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d personal_finance -U admin" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  api-personal-finance:
+    image: sineto/personal-finance:1.0.0
+    container_name: api-personal-finance
+    ports:
+      - "8080:8080"
+    networks:
+      - apiNetwork
+    depends_on:
+      pg-personal-finance:
+        condition: service_healthy
+
+#  front-personal-finance:
+#    image: sineto/front-personal-finance:1.0.0
+#    container_name: front-personal-finance
+#    ports:
+#      - "3000:3000"
+#    networks:
+#      - apiNetwork
+
+networks:
+  apiNetwork:
+    driver: bridge
