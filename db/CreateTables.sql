@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS wallets
     description varchar(255)             NOT NULL,
     balance     float,
     date_create timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
-    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC')
-
+    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+    user_id     varchar                  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS categories
@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS categories
     ID          int                      NOT NULL primary key generated always as identity,
     description varchar(255)             NOT NULL,
     date_create timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
-    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC')
+    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+    user_id     varchar                  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS type_payments
@@ -21,7 +22,8 @@ CREATE TABLE IF NOT EXISTS type_payments
     ID          int                      NOT NULL primary key generated always as identity,
     description varchar(255)             NOT NULL,
     date_create timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
-    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC')
+    date_update timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+    user_id     varchar                  NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS transaction_status
@@ -45,6 +47,7 @@ CREATE TABLE IF NOT EXISTS transactions
     transaction_status_id int                      NOT NULL,
     date_create           timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
     date_update           timestamp with time zone NOT NULL DEFAULT (current_timestamp AT TIME ZONE 'UTC'),
+    user_id               varchar                  NOT NULL,
     CONSTRAINT transaction_FK_parent_transaction
         FOREIGN KEY (parent_transaction_id)
             REFERENCES transactions (ID),
