@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "567ecec9-e0cf-4819-a88b-191447a62337",
+		"name": "PersonalFinanceRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15217678"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Restaurante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindByPeriod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/period?from=2022-08-01&to=2022-08-15",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"period"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-08-01"
+								},
+								{
+									"key": "to",
+									"value": "2022-08-15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BalanceByPeriod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/balance/period?from=2022-08-01&to=2022-08-30",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"balance",
+								"period"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-08-01"
+								},
+								{
+									"key": "to",
+									"value": "2022-08-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindParentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/parent/56c755bc-0f4b-47f9-bad7-4444e024dd52",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"parent",
+								"56c755bc-0f4b-47f9-bad7-4444e024dd52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindParentByPeriod",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/transactions/parent/period?from=2022-01-01&to=2023-12-30",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"parent",
+								"period"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-01-01"
+								},
+								{
+									"key": "to",
+									"value": "2023-12-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/236f421a-7367-415d-bac2-8fbb954ecaa3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"236f421a-7367-415d-bac2-8fbb954ecaa3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Aluguel\",\n    \"amount\": -1200,\n    \"date\": \"2023-01-05T00:00:00Z\",\n    \"parent_transaction_id\": \"fe821a0a-0d76-4272-a44a-174e20c062f9\",\n    \"transaction_status_id\": 1,\n    \"wallet_id\": 2,\n    \"type_payment_id\": 1,\n    \"category_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"wallet_id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/f6c4a3c9-8177-4319-b0c3-00f2ddcca516",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"f6c4a3c9-8177-4319-b0c3-00f2ddcca516"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TransactionStatus",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactionStatus",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactionStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TypePayment",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/typePayments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"typePayments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/typePayments/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"typePayments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/typePayments/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"typePayments",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Banco Inter\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/typePayments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"typePayments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "FindAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/wallets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/wallets/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/wallets/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallets",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Carteria física\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/wallets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/ping",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
