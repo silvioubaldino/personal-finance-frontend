@@ -55,7 +55,6 @@ function FormExample() {
               required
               type="text"
               placeholder="Leave a Description"
-              defaultValue="Mark"
               value={nome}
               onChange={handleFields}
               isValid={isValid}
@@ -88,7 +87,7 @@ function FormExample() {
           <Form.Group as={Col} md="2" controlId="validationCustom04">
             <Form.Label>Paid?</Form.Label>
             <ToggleButton
-              style={{ width: '50px' }}
+              style={{ width: '50px', marginLeft: '10px', marginTop: '10px' }}
               className="mb-2"
               id="toggle-check-pay"
               type="checkbox"
@@ -104,7 +103,7 @@ function FormExample() {
           <Form.Group as={Col} md="2" controlId="validationCustom05">
             <Form.Label>Frequently?</Form.Label>
             <ToggleButton
-              style={{ width: '50px' }}
+              style={{ width: '50px', marginLeft: '10px' }}
               className="mb-2"
               id="toggle-check-frequently"
               type="checkbox"
