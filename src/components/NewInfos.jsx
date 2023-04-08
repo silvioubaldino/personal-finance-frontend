@@ -7,7 +7,14 @@ function NewInfos() {
   return (
     <>
       <Button
-        style={{ 'marginTop': '20px', marginLeft: '30px' }}
+        style={{
+          'marginTop': '20px',
+          marginLeft: '30px',
+          background: '#E00047',
+          border: 'solid 2px #FF0A58',
+          fontSize: '16px',
+          fontWeight: 'bold'
+        }}
         variant="primary"
         onClick={() => setShow(true)}
         data-bs-toggle="offcanvas"
@@ -18,7 +25,7 @@ function NewInfos() {
       </Button>
 
       <Offcanvas
-        style={{ 'width': '600px' }}
+        style={{ 'width': '600px', background: '#ff709d' }}
         show={show} onHide={() => setShow(false)}
         data-bs-scroll="true" data-bs-backdrop="false"
         tabIndex="-1" id="offcanvasScrolling"

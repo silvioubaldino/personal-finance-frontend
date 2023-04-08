@@ -34,7 +34,12 @@ function Movements() {
                 <p>{`Total: R$ ${e.amount}`}</p>
               </Accordion.Body>
             </Accordion.Item>
-            <Button onClick={() => handlePayment(e.amount)}>Pagar</Button>
+            <Button
+              style={{ backgroundColor: '#E00047', border: 'none' }}
+              onClick={() => handlePayment(e.amount)}
+            >
+              Pagar
+            </Button>
           </Container>
         ))}
       </Accordion>

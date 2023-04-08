@@ -16,7 +16,7 @@ function AddCategory({ show, addCat }) {
     <>
       <Modal show={show} onHide={() => show()}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -24,7 +24,7 @@ function AddCategory({ show, addCat }) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Example textarea</Form.Label>
+              <Form.Label>Tap here to add new category</Form.Label>
               <Form.Control
                 value={category}
                 onChange={({ target }) => setCategory(target.value)}

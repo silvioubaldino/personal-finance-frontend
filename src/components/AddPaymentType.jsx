@@ -24,7 +24,7 @@ function AddPaymentType({ show, addPay }) {
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Example textarea</Form.Label>
+              <Form.Label>Tap here to add new Payment type</Form.Label>
               <Form.Control
                 value={payment}
                 onChange={({ target }) => setPayment(target.value)}

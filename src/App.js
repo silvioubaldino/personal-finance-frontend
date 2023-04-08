@@ -5,7 +5,7 @@ import Movements from './components/Movements';
 
 function App() {
   return (
-    <div>
+    <div style={{ background: '#52001A', height: '100vh' }}>
       <NavBar />
       <NewInfos />
       <Movements />

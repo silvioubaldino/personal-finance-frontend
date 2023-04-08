@@ -87,7 +87,12 @@ function FormExample() {
           <Form.Group as={Col} md="2" controlId="validationCustom04">
             <Form.Label>Paid?</Form.Label>
             <ToggleButton
-              style={{ width: '50px', marginLeft: '10px', marginTop: '10px' }}
+              style={{
+                width: '50px', marginLeft: '10px',
+                marginTop: '10px',
+                color: '#8F002D',
+                border: 'solid 2px #8F002D'
+              }}
               className="mb-2"
               id="toggle-check-pay"
               type="checkbox"
@@ -103,7 +108,7 @@ function FormExample() {
           <Form.Group as={Col} md="2" controlId="validationCustom05">
             <Form.Label>Frequently?</Form.Label>
             <ToggleButton
-              style={{ width: '50px', marginLeft: '10px' }}
+              style={{ width: '50px', marginLeft: '10px', color: '#8F002D', border: 'solid 2px #8F002D' }}
               className="mb-2"
               id="toggle-check-frequently"
               type="checkbox"
@@ -128,7 +133,13 @@ function FormExample() {
           </Col>
           <Col>
             {showC && <AddCategory show={() => setShowC(!showC)} addCat={categories} />}
-            <Button className='mb-1' onClick={() => setShowC(!showC)}>Add Category</Button>
+            <Button
+              className='mb-1'
+              onClick={() => setShowC(!showC)}
+              style={{ backgroundColor: '#8F002D', border: 'none' }}
+            >
+              Add Category
+            </Button>
           </Col>
         </Row>
         <Row className='mb-3'>
@@ -143,10 +154,21 @@ function FormExample() {
           </Col>
           <Col>
             {showP && <AddPaymentType show={() => setShowP(!showP)} addPay={payments} />}
-            <Button className='mb-1' onClick={() => setShowP(!showP)}>Add Payment</Button>
+            <Button
+              className='mb-1'
+              style={{ backgroundColor: '#8F002D', border: 'none' }}
+              onClick={() => setShowP(!showP)}
+            >
+              Add Payment
+            </Button>
           </Col>
         </Row>
-        <Button type="submit">Submit Entry</Button>
+        <Button
+          type="submit"
+          style={{ backgroundColor: '#E00047', border: 'none' }}
+        >
+          Submit Entry
+        </Button>
       </Form>
     </Container>
   );
