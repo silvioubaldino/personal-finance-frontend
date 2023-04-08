@@ -70,7 +70,7 @@ function FormExample() {
               type="text"
               placeholder="Leave a Description"
               value={nome}
-              onChange={body.description}
+              onChange={handleFields}
               isValid={isValid}
               isInvalid={isInvalid}
             />
