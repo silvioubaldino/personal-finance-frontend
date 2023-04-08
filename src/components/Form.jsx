@@ -7,6 +7,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import Row from 'react-bootstrap/Row';
 import AddCategory from './AddCategory';
 import AddPaymentType from './AddPaymentType';
+import axios from 'axios';
 
 function FormExample() {
   const [validated, setValidated] = useState(false);
@@ -19,7 +20,20 @@ function FormExample() {
   const [payments, setPay] = useState(['Crédito', 'Débito', 'Pix', 'Dinheiro']);
   const [showP, setShowP] = useState(false);
   const [showC, setShowC] = useState(false);
+  const [body, setBody] = useState({
+    description: "",
+    amount: 0,
+    category_id: "",
+    type_payment_id: "",
+    transaction_status_id: checkedPay,
+  })
 
+
+  const requestPostNewEntry = async () => {
+    const req = await axios.post('/transaction', body);
+
+    return req.status
+  }
 
   const handleFields = (event) => {
     const valor = event.target.value;
@@ -40,7 +54,7 @@ function FormExample() {
       event.preventDefault();
       event.stopPropagation();
     }
-
+    requestPostNewEntry();
     setValidated(true);
   };
 
@@ -56,7 +70,7 @@ function FormExample() {
               type="text"
               placeholder="Leave a Description"
               value={nome}
-              onChange={handleFields}
+              onChange={body.description}
               isValid={isValid}
               isInvalid={isInvalid}
             />

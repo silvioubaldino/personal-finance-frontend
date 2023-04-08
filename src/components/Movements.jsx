@@ -13,6 +13,7 @@ function Movements() {
   const getMovements = async () => {
     const response = await axios.get('http://localhost:8080/transactions/');
     setMovements(response.data)
+    console.log(response.data);
   }
 
   const handlePayment = (value) => {
@@ -21,14 +22,27 @@ function Movements() {
 
   useEffect(() => {
     getMovements();
-  })
+  }, [])
+
   return (
     <Container style={{ marginTop: '30px', marginLeft: '0px' }}>
       <Accordion>
         {movements?.map((e, i) => (
           <Container key={i} className='d-flex flex-row mb-3'>
             <Accordion.Item eventKey={`${i}`} style={{ width: '400px' }}>
-              <Accordion.Header>{e.description}</Accordion.Header>
+              <Accordion.Header>
+                <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', 'flexDirection': 'column', justifyContent: 'center' }}>
+                    <h4>{e.description}</h4>
+                    <legend style={{ fontSize: '14px' }}>
+                      {(e?.date).split('T')[0]}
+                    </legend>
+                  </div>
+                  <div style={{ display: 'flex', alignContent: 'center' }}>
+                    {`Amount: R$ ${e.amount}`}
+                  </div>
+                </Container>
+              </Accordion.Header>
               <Accordion.Body>
                 DETALHES DA MOVIMENTAÇÃO
                 <p>{`Total: R$ ${e.amount}`}</p>
