@@ -15,4 +15,11 @@ async function getTransactionsByPeriod(from, to) {
   return response
 }
 
-export { getTransactionsByPeriod }
+async function postTransaction(body) {
+  const path = baseUrl + "/transactions";
+  const response = await axios.post(path, body);
+
+  return response.status;
+}
+
+export { getTransactionsByPeriod, postTransaction }

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import { Container } from 'react-bootstrap';
+import { getTransactionsByPeriod } from '../handlers/transaction';
+import TableTransactions from './TableTransactions';
 
-// const totals = [{ tipo: 'mercado', total: 40.00 }, { tipo: 'cafeteria', total: 12.02 }, { tipo: 'barbearia', total: 35.00 }]
 
+const mockFrom = "2022-01-01"
+const mockTo = "2023-12-30"
 
 function Movements() {
   const [movements, setMovements] = useState([])
 
   const getMovements = async () => {
-    const response = await axios.get('http://localhost:8080/transactions/');
-    setMovements(response.data)
-    console.log(response.data);
+    const transaction = await getTransactionsByPeriod(mockFrom, mockTo);
+    setMovements(transaction.data)
   }
 
   const handlePayment = (value) => {
@@ -29,28 +30,31 @@ function Movements() {
       <Accordion>
         {movements?.map((e, i) => (
           <Container key={i} className='d-flex flex-row mb-3'>
-            <Accordion.Item eventKey={`${i}`} style={{ width: '400px' }}>
+            <Accordion.Item eventKey={`${i}`} style={{ width: '100%' }}>
               <Accordion.Header>
                 <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', 'flexDirection': 'column', justifyContent: 'center' }}>
-                    <h4>{e.description}</h4>
+                    <h4>{e.parent_transaction.description}</h4>
                     <legend style={{ fontSize: '14px' }}>
-                      {(e?.date).split('T')[0]}
+                      {(e?.parent_transaction.date).split('T')[0]}
                     </legend>
                   </div>
-                  <div style={{ display: 'flex', alignContent: 'center' }}>
-                    {`Amount: R$ ${e.amount}`}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+                    <p>{`Estimated: R$ ${e.consolidation.estimated}`}</p>
+                    <p>{`Realized: R$ ${e.consolidation.realized}`}</p>
+                    <p>{`Remaining: R$ ${e.consolidation.remaining}`}</p>
                   </div>
                 </Container>
               </Accordion.Header>
               <Accordion.Body>
                 DETALHES DA MOVIMENTAÇÃO
-                <p>{`Total: R$ ${e.amount}`}</p>
+                <TableTransactions items={e.transaction_list} />
               </Accordion.Body>
             </Accordion.Item>
             <Button
               style={{ backgroundColor: '#E00047', border: 'none' }}
-              onClick={() => handlePayment(e.amount)}
+              onClick={() => handlePayment(e.parent_transaction.amount)}
+              disabled={!e.consolidation.remaining > 0}
             >
               Pagar
             </Button>

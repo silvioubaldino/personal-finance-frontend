@@ -7,11 +7,10 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import Row from 'react-bootstrap/Row';
 import AddCategory from './AddCategory';
 import AddPaymentType from './AddPaymentType';
-import axios from 'axios';
+import { postTransaction } from '../handlers/transaction';
 
 function FormExample() {
   const [validated, setValidated] = useState(false);
-  const [nome, setNome] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [checkedPay, setCheckedPay] = useState(false);
@@ -20,24 +19,40 @@ function FormExample() {
   const [payments, setPay] = useState(['Crédito', 'Débito', 'Pix', 'Dinheiro']);
   const [showP, setShowP] = useState(false);
   const [showC, setShowC] = useState(false);
-  const [body, setBody] = useState({
-    description: "",
-    amount: 0,
-    category_id: "",
-    type_payment_id: "",
-    transaction_status_id: checkedPay,
-  })
-
+  const [description, setDescription] = useState('');
+  const [amount, setAmount] = useState(0);
+  const [date, setDate] = useState('');
+  const [type_payment_id, setTypePayment] = useState();
+  const [category_id, setCategory] = useState();
+  const [wallet_id, setWallet] = useState(1);
+  const [transaction_status_id, setTransaction] = useState(1);
 
   const requestPostNewEntry = async () => {
-    const req = await axios.post('/transaction', body);
+    const body = {
+      description,
+      amount,
+      date,
+      parent_transaction_id: null,
+      type_payment_id,
+      category_id,
+      wallet_id,
+      transaction_status_id,
+    }
+    const req = await postTransaction(body);
 
-    return req.status
+    return req;
+  }
+
+  const handlePayStatus = () => {
+    if (checkedPay) {
+      setTransaction(1)
+    } else {
+      setTransaction(2)
+    }
   }
 
   const handleFields = (event) => {
     const valor = event.target.value;
-    setNome(valor);
 
     if (valor.length > 3) {
       setIsValid(true);
@@ -46,15 +61,17 @@ function FormExample() {
       setIsValid(false);
       setIsInvalid(true);
     }
+    setDescription(valor);
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    requestPostNewEntry();
+    await requestPostNewEntry();
     setValidated(true);
   };
 
@@ -67,10 +84,11 @@ function FormExample() {
             <Form.Label>Description</Form.Label>
             <Form.Control
               required
+              name="description"
               type="text"
               placeholder="Leave a Description"
-              value={nome}
-              onChange={handleFields}
+              value={description}
+              onChange={(e) => handleFields(e)}
               isValid={isValid}
               isInvalid={isInvalid}
             />
@@ -81,7 +99,10 @@ function FormExample() {
             <Form.Label>Value</Form.Label>
             <Form.Control
               required
+              name="amount"
               type="number"
+              value={amount}
+              onChange={({ target }) => setAmount(target.value)}
               step="0.01"
               placeholder="Tap the Value"
             />
@@ -92,7 +113,13 @@ function FormExample() {
           {/* Input data de Vencimento */}
           <Form.Group as={Col} md="7" controlId="validationCustom03">
             <Form.Label>Maturity</Form.Label>
-            <Form.Control type="date" required />
+            <Form.Control
+              type="date"
+              name="date"
+              required
+              value={date}
+              onChange={({ target }) => setDate(target.value)}
+            />
             <Form.Control.Feedback type="invalid">
               Please provide a valid date.
             </Form.Control.Feedback>
@@ -110,9 +137,11 @@ function FormExample() {
               className="mb-2"
               id="toggle-check-pay"
               type="checkbox"
+              name="transaction_status"
               variant="outline-primary"
               checked={checkedPay}
-              value="1"
+              value={transaction_status_id}
+              onClick={handlePayStatus}
               onChange={(e) => setCheckedPay(e.currentTarget.checked)}
             >
               {checkedPay ? 'Yes' : 'No'}
@@ -138,10 +167,17 @@ function FormExample() {
         <Row className='mb-3'>
           {/* Select da Categoria */}
           <Col xs={8}>
-            <Form.Select aria-label="Default select example" className='mb-2' required>
+            <Form.Select
+              name='category'
+              aria-label="Default select example"
+              className='mb-2'
+              value={category_id}
+              onChange={({ target }) => setCategory(target.value)}
+              required
+            >
               <option>Select a Category</option>
               {categories.map((cat, i) => (
-                <option value={cat} key={i}>{cat}</option>
+                <option value={i + 1} key={i}>{cat}</option>
               ))}
             </Form.Select>
           </Col>
@@ -159,10 +195,17 @@ function FormExample() {
         <Row className='mb-3'>
           {/* Select do tipo de pagamento */}
           <Col xs={8}>
-            <Form.Select aria-label="Default select examples" className='mb-2' required>
+            <Form.Select
+              name="type_payment"
+              aria-label="Default select examples"
+              className='mb-2'
+              required
+              value={type_payment_id}
+              onChange={({ target }) => setTypePayment(target.value)}
+            >
               <option>Select Payment Type</option>
               {payments.map((pay, i) => (
-                <option value={pay} key={i + 1}>{pay}</option>
+                <option value={i + 1} key={i + 1}>{pay}</option>
               ))}
             </Form.Select>
           </Col>
