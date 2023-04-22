@@ -5,10 +5,12 @@ import Modal from 'react-bootstrap/Modal';
 
 function AddPaymentType({ show, addPay }) {
   const [payment, setPayment] = useState('');
+  // const createPaymentType = () => axios.post('/categories', { payment })
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addPay.push(payment);
+    // chamar a createPaymentType()
     show()
   }
 

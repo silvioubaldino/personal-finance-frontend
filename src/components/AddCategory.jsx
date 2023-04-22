@@ -5,10 +5,11 @@ import Modal from 'react-bootstrap/Modal';
 
 function AddCategory({ show, addCat }) {
   const [category, setCategory] = useState('');
-
+  // const createCategoryType = () => axios.post('/categories', { category })
   const handleSubmit = (event) => {
     event.preventDefault();
     addCat.push(category);
+    // chamar a createCategoryType()
     show();
   }
 

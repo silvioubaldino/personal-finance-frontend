@@ -6,15 +6,15 @@ import { getTransactionsByPeriod } from '../handlers/transaction';
 import TableTransactions from './TableTransactions';
 
 
-const mockFrom = "2022-01-01"
-const mockTo = "2023-12-30"
+const mockFrom = "2021-04-01"
+const mockTo = "2023-12-28"
 
 function Movements() {
   const [movements, setMovements] = useState([])
 
   const getMovements = async () => {
     const transaction = await getTransactionsByPeriod(mockFrom, mockTo);
-    setMovements(transaction.data)
+    setMovements(transaction)
   }
 
   const handlePayment = (value) => {
@@ -34,9 +34,9 @@ function Movements() {
               <Accordion.Header>
                 <Container style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', 'flexDirection': 'column', justifyContent: 'center' }}>
-                    <h4>{e.parent_transaction.description}</h4>
+                    <h4>{e.estimate.description}</h4>
                     <legend style={{ fontSize: '14px' }}>
-                      {(e?.parent_transaction.date).split('T')[0]}
+                      {(e?.estimate.date).split('T')[0]}
                     </legend>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
@@ -48,12 +48,12 @@ function Movements() {
               </Accordion.Header>
               <Accordion.Body>
                 DETALHES DA MOVIMENTAÇÃO
-                <TableTransactions items={e.transaction_list} />
+                <TableTransactions items={e.done_list} />
               </Accordion.Body>
             </Accordion.Item>
             <Button
               style={{ backgroundColor: '#E00047', border: 'none' }}
-              onClick={() => handlePayment(e.parent_transaction.amount)}
+              onClick={() => handlePayment(e.estimate.amount)}
               disabled={!e.consolidation.remaining > 0}
             >
               Pagar

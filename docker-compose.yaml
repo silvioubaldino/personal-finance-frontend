@@ -25,6 +25,12 @@ services:
   api-personal-finance:
     image: sineto/personal-finance:2.0.1
     container_name: api-personal-finance
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_HOST: pg-personal-finance
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: personal_finance
     ports:
       - "8080:8080"
     networks:

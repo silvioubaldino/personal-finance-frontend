@@ -25,19 +25,23 @@ function FormExample() {
   const [type_payment_id, setTypePayment] = useState();
   const [category_id, setCategory] = useState();
   const [wallet_id, setWallet] = useState(1);
-  const [transaction_status_id, setTransaction] = useState(1);
+  const [status_id, setTransaction] = useState(1);
 
   const requestPostNewEntry = async () => {
+    const toNum = Number(type_payment_id)
+    const dateIso = new Date(date)
+
     const body = {
       description,
       amount,
-      date,
-      parent_transaction_id: null,
-      type_payment_id,
+      date: dateIso.toISOString(),
+      transaction_id: null,
+      type_payment_id: toNum,
       category_id,
       wallet_id,
-      transaction_status_id,
+      status_id,
     }
+    console.log(body);
     const req = await postTransaction(body);
 
     return req;
@@ -140,7 +144,7 @@ function FormExample() {
               name="transaction_status"
               variant="outline-primary"
               checked={checkedPay}
-              value={transaction_status_id}
+              value={status_id}
               onClick={handlePayStatus}
               onChange={(e) => setCheckedPay(e.currentTarget.checked)}
             >
