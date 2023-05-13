@@ -23,9 +23,9 @@ function FormExample() {
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState('');
   const [type_payment_id, setTypePayment] = useState();
-  const [category_id, setCategory] = useState();
+  const [category_id, setCategory] = useState(0);
   const [wallet_id, setWallet] = useState(1);
-  const [status_id, setTransaction] = useState(1);
+  const [status_id, setTransaction] = useState(2);
 
   const requestPostNewEntry = async () => {
     const toNum = Number(type_payment_id)
@@ -49,9 +49,9 @@ function FormExample() {
 
   const handlePayStatus = () => {
     if (checkedPay) {
-      setTransaction(1)
-    } else {
       setTransaction(2)
+    } else {
+      setTransaction(1)
     }
   }
 
@@ -106,7 +106,7 @@ function FormExample() {
               name="amount"
               type="number"
               value={amount}
-              onChange={({ target }) => setAmount(target.value)}
+              onChange={({ target }) => setAmount(target.valueAsNumber)}
               step="0.01"
               placeholder="Tap the Value"
             />
@@ -176,7 +176,7 @@ function FormExample() {
               aria-label="Default select example"
               className='mb-2'
               value={category_id}
-              onChange={({ target }) => setCategory(target.value)}
+              onChange={({ target }) => setCategory(parseInt(target.value))}
               required
             >
               <option>Select a Category</option>

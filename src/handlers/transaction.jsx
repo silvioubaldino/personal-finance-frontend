@@ -13,7 +13,7 @@ async function getTransactionsByPeriod(from, to) {
 }
 
 async function postTransaction(body) {
-  const path = baseUrl + "/movements";
+  const path = baseUrl + "/movements/";
   const response = await axios.post(path, body);
 
   return response.status;
