@@ -1,18 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import NavBar from './components/NavBar';
-import NewInfos from './components/NewInfos';
-import Movements from './components/Movements';
 
-import './main.css';
+import {Route, Switch} from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <div>
-      <NavBar />
-      <NewInfos />
-      <Movements />
-    </div>
-  );
+    return (
+        <Switch>
+            <Route exact path="/" component={Home}/>
+
+            <Route exact path="/login" component={Login}/>
+        </Switch>
+    );
 }
 
 export default App;
