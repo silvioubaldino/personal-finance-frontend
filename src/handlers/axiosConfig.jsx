@@ -1,7 +1,8 @@
 import axios from "axios";
 import {readStorage} from "../utils/handleLocalStorage";
 
-const baseUrl = "http://127.0.0.1:8080"
+const defaultURL = "http://localhost:8080";
+const baseUrl = process.env.REACT_APP_BASE_URL || defaultURL;
 
 axios.defaults.headers.common['user_token'] = readStorage();
 
